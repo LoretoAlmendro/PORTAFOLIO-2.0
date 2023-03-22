@@ -74,3 +74,11 @@ p{
     font-weight: bold;
     padding-top: 13%;
  }
+
+.generic_btn_tittle{
+    text-decoration: none;
+    color: #000000;
+}
+.generic_btn_tittle:hover{
+    color: #ffffff;
+}
