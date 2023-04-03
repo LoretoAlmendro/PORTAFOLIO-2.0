@@ -1,6 +1,20 @@
 * {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+#tono_bcgd{
+    background-image: url(images/tono.gif);
+}
 
+#saturacion_bcgd{
+    background-image: url(images/SATURACIÓN.gif);
+}
+
+#matiz_bcgd{
+    background-image: url(images/MATIZ.gif);
+}
+
+#luminosidad_bcgd{
+    background-image: url(images/LUMINOSIDAD.gif);
+}
 .square{
     float: right;
     margin-top: 22%;

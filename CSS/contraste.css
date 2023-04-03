@@ -3,11 +3,11 @@
 
 #navbar{
     list-style-type: none;
-    margin-top: 0;
+    margin-top: 1%;
     padding: 0;
     overflow: hidden;
     background-color: #ffffff;
-    border: 3px solid #000000;
+    border-bottom: 3px solid #000000;
 }
 
 
@@ -45,9 +45,9 @@ p{
 
  #cualidades_btn{
     display:flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 10%;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-top: 4%;
 } 
 
 .generic_btn{
@@ -59,11 +59,16 @@ p{
    text-align:start;
    font-weight: bold;
    padding-top: 13%;
+   margin: 2%;
+
 }
 
+:root{
+    --bg-color: #000000;
+}
 
 .generic_btn:hover{
-    background-color: #000000;
+    background-color: var(--bg-color);
     color: #ffffff;
     width: 20%;
     height: 250px;
@@ -72,12 +77,10 @@ p{
     padding-top: 13%;
  }
 
-
-
 .generic_btn_tittle{
     text-decoration: none;
     color: #000000;
 }
-/* .generic_btn_tittle:hover{
+.generic_btn_tittle:hover{
     color: #ffffff;
-} */
+}
