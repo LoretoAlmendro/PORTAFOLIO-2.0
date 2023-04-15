@@ -26,9 +26,23 @@ app.set("view engine", "hbs");
 app.use("/public", express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/* app.get('/CSS/index.css', function (req, res) {
+    res.type('text/css');
+    res.sendFile(__dirname + '/public/CSS/index.css');
+});
+ */
 
+/*Get PLANTILLAS HBS*/
 app.get('/', (req, res) => {
     res.render('index', { title: 'Mi página HBS' });
+});
+
+app.get('/indice', (req, res) => {
+    res.render('indice', { title: 'Indice' });
+});
+
+app.get('/cualidades', (req, res) => {
+    res.render('cualidades', { title: 'Menu cualidades' });
 });
 
 app.listen(3000, () => {
