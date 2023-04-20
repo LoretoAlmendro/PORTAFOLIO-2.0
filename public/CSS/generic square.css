@@ -1,21 +1,24 @@
-* {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-#tono_bcgd{
-    background-image: url(images/tono.gif);
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#saturacion_bcgd{
-    background-image: url(images/SATURACIÓN.gif);
+#tono_bcgd {
+    background-image: url(/public/images/tono.gif);
 }
 
-#matiz_bcgd{
-    background-image: url(images/MATIZ.gif);
+#saturacion_bcgd {
+    background-image: url(/public/images/SATURACIÓN.gif);
 }
 
-#luminosidad_bcgd{
-    background-image: url(images/LUMINOSIDAD.gif);
+#matiz_bcgd {
+    background-image: url(/public/images/MATIZ.gif);
 }
-.square{
+
+#luminosidad_bcgd {
+    background-image: url(/public/images/LUMINOSIDAD.gif);
+}
+
+.square {
     float: right;
     margin-top: 22%;
     margin-right: 2%;

@@ -64,7 +64,19 @@ app.get('/contraste', (req, res) => {
 })
 
 app.get('/tono', (req, res) => {
-    res.render('tono',)
+    res.render('TONO',)
+})
+
+app.get('/saturacion', (req, res) => {
+    res.render('SATURACION',)
+})
+
+app.get('/matiz', (req, res) => {
+    res.render('MATIZ',)
+})
+
+app.get('/luminosidad', (req, res) => {
+    res.render('LUMINOSIDAD',)
 })
 app.listen(3000, () => {
     console.log('Servidor iniciado en el puerto 3000');
