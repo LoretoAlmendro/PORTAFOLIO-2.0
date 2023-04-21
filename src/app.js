@@ -78,6 +78,13 @@ app.get('/matiz', (req, res) => {
 app.get('/luminosidad', (req, res) => {
     res.render('LUMINOSIDAD',)
 })
+
+app.get('/formulario', (req, res) => {
+    res.render('FORMULARIO',)
+})
+
 app.listen(3000, () => {
     console.log('Servidor iniciado en el puerto 3000');
 });
+
+

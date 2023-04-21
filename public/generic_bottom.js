@@ -44,5 +44,53 @@ console.log(tono);*/
 }); */
 
 
+/*Evento onclick footer*/
 
+const botonFooter = document.getElementById('btn_footer');
+botonFooter.addEventListener('click', function () {
+  window.location.href = "/formulario";
+});
+
+/* // Send data after the button is clicked
+categoryForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let inputName = categoryForm.elements["category"].value;
+  const data = { name: inputName };
+ */
+
+/*Evento onclick formulario vinculaci[on tablas*/
+let formularioDatos = document.getElementById("formularioDatos");
+formularioDatos.addEventListener('submit', (event) => {
+  event.preventDefault();
+  let inputNombre = formularioDatos.elements["nombre"].value;
+  let inputApellido = formularioDatos.elements["apellido"].value;
+  let inputDireccion = formularioDatos.elements["direccion"].value;
+  let inputX = formularioDatos.elements["x1"].value;
+
+  const data = {
+    name: inputNombre,
+    lastname: inputApellido,
+    address: inputDireccion,
+    x: inputX
+  };
+
+  if (inputNombre == '' || inputApellido == '' || inputDireccion == '' || inputX == '') {
+    alert('Por favor, complete todos los campos');
+  } else {
+    postJSON(data);
+  }
+});
+
+async function postJSON(data) {
+  try {
+    const response = await fetch("http://localhost:3000/categories", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    // Hacer algo con la respuesta...
+  } catch (error) {
+    console.error(error);
+  }
+}
 
