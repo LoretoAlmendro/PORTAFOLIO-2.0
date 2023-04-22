@@ -90,4 +90,4 @@ Region.hasMany(Persona);
 Persona.belongsTo(Region);
 
 // Crear tabla si no existe (no hacer nada si no existe)
-await sequelize.sync({ force: true });
+await sequelize.sync({});

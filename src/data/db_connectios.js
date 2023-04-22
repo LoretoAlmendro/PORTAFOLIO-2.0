@@ -1,9 +1,11 @@
-import pg from "pg";
-const { Pool } = pg;
+/* import pg from "pg";
+const { Pool } = pg; */
 import dotenv from "dotenv";
 dotenv.config();
 
-const pool = new Pool({
+
+
+/* const pool = new Pool({
     user: "postgres",
     host: "db.vuuyricpkrwfpcyppnfu.supabase.co",
     database: "postgres",
@@ -13,6 +15,12 @@ const pool = new Pool({
     max: 20,
     idleTimeoutMillis: 5000,
     connectionTimeoutMillis: 2000,
+}); */
+
+//Crear conexión
+const sequelize = new Sequelize("postgres", "postgres", process.env.SUPABASE_PASS, {
+    host: "db.vuuyricpkrwfpcyppnfu.supabase.co",
+    dialect: "postgres",
 });
 
-export default pool;
+export { sequelize };
