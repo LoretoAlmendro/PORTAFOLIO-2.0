@@ -2,9 +2,9 @@ import express from "express";
 import { join } from "path";
 import path from "path";
 import bodyParser from "body-parser";
-import hbs from "hbs";
+import hbs from "express-hbs";
 import { Sequelize, Model, DataTypes } from "sequelize"; // importar Sequelize
-import { sequelize } from "../src/data/db_connectios.js";
+import { sequelize } from "./data/db_connectios.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -13,14 +13,17 @@ const __dirname = dirname(__filename);
 
 
 const app = express();
-const partialsDir = join(new URL('.', import.meta.url).pathname, 'views/partials');
 
-hbs.registerPartials(partialsDir);
-//app.use(express.static(path.join(__dirname, 'src', 'public')));
 
-// app.set('views', join(new URL('.', import.meta.url).pathname, 'views'));
-app.set('views', join(__dirname, 'views'));
-app.set("view engine", "hbs"); 
+// Engine Config
+// Use `.hbs` for extensions and find partials in `views/partials`.
+app.engine('hbs', hbs.express4({
+    partialsDir: __dirname + '/views/partials'
+}));
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+
+// define directorio archivos publicos
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
