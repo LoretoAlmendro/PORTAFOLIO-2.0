@@ -4,9 +4,15 @@ import path from "path";
 import bodyParser from "body-parser";
 import hbs from "express-hbs";
 import { Sequelize, Model, DataTypes } from "sequelize"; // importar Sequelize
-import { sequelize } from "./data/db_connectios.js";
+import { sequelize } from "./API/data/db_connectios.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
+//Sequelize y DB
+
+import { regionRoutes } from "./API/routes/region.routes.js";
+import { comunaRoutes } from "./API/routes/comuna.routes.js";
+import { personRoutes } from "./API/routes/persona.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,6 +28,13 @@ app.engine('hbs', hbs.express4({
 }));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
+
+//Middleware=metodo API
+
+app.use(express.json()),
+app.use (regionRoutes);
+app.use (comunaRoutes);
+app.use (personRoutes);
 
 // define directorio archivos publicos
 app.use(express.static('public'));

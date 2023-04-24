@@ -13,7 +13,7 @@ const createRegion = async (req, res) => {
     try {
         const { name } = req.body;
         const newRegion = await region.create({
-            name,
+            name
         });
         console.log(newRegion);
         res.json(newRegion);
