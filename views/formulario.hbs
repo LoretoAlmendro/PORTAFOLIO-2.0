@@ -15,7 +15,7 @@
     {{> nav_contraste}}
 
     <main>
-        <form class="row g-3" id="formularioDatos" name="categoria">
+        <form class="row g-3" id="formularioDatos" name="categoria" action="/region" method="post">
             <div class="col-md-6">
                 <label for="validationDefault01" class="form-label">Nombre</label>
                 <input type="text" name="nombre" class="form-control btn-outline-dark" id="validationDefault01" value="Mark" required>
@@ -40,10 +40,8 @@
             </div>
             <div class="col-md-6">
                 <label for="validationDefault04" class="form-label">Region</label>
-                <select class="form-select" name="region" id="validationDefault04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                </select>
+                <input type="text" name="region" class="form-control" id="region" required>
+
             </div>
             <div class="col-12">
                 <div class="form-check">
