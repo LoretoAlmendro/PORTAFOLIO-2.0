@@ -30,14 +30,14 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
 //Middleware=metodo API
-app.use(methodOverride("_method", {methods: ["GET", "POST"]}));
+app.use(methodOverride("_method", { methods: ["GET", "POST"] }));
 app.use(express.json()),
-// app.use (regionRoutes);
-// app.use (comunaRoutes);
-// app.use (personRoutes);
+    // app.use (regionRoutes);
+    // app.use (comunaRoutes);
+    // app.use (personRoutes);
 
-// define directorio archivos publicos
-app.use(express.static('public'));
+    // define directorio archivos publicos
+    app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -79,29 +79,41 @@ app.get('/formulario', (req, res) => {
 
 app.get('/region', async (req, res) => {
     //haciendo la consulta api
-    const resultado = await fetch (`http://localhost:4000/api/region`);
-    
+    const resultado = await fetch(`http://localhost:4000/api/region`);
+
     //transformar dato a json
     const data = await resultado.json();
+    console.log(data)
 
-    res.render('mantenedor', {personas:data});
+    res.render('mantenedor', { personas: data });
 });
 
-app.post('/region', async (req, res) => {
-    //haciendo la consulta api
-    const {region} = req.body
-    const body={region:region}
+app.post('/mantenedor', async (req, res) => {
+    const { region } = req.body;
     console.log(region)
-    const resultado = await fetch (`http://localhost:4000/api/region`,{
-        method: "post",
-        body: JSON.stringify(body),
-        headers:{"content-type":"application/json"}
-    });
-    console.log("ruta post")
-    //transformar dato a json
-    const data = await resultado.json();
+})
 
-    res.redirect('/region');
+app.post('/persona', async (req, res) => {
+    //haciendo la consulta api
+    const { nombre, apellido, mail, formacion, edad, comuna, region, estudiante } = req.body;
+    try {
+
+        console.log(nombre, apellido, mail, formacion, edad, comuna, region, estudiante)
+        const resultado = await fetch(`http://localhost:4000/api/persona`, {
+            method: "post",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                nombre, apellido, mail, formacion, edad, comuna, region, estudiante
+            })
+        });
+        console.log("ruta post")
+        //transformar dato a json
+        const data = await resultado.json();
+
+        res.redirect('/region');
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 app.listen(3000, () => {
