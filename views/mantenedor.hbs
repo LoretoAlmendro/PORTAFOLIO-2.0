@@ -18,7 +18,7 @@
 
     <table>
         <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>E-mail</th>
@@ -29,7 +29,7 @@
             <th>Estudiante</th>
         </tr>
         <tr>
-            <form id="formulario" action="/mantenedor" method="POST">
+            <form id="formulario" action="/mantenedor/{{id}}" method="POST">
                 <td></td>
                 <td><input type="text" id="in_nombre" name="nombre" placeholder="Nombre"></td>
                 <td><input type="text" id="in_apellido" name="apellido" placeholder="Apellido"></td>
@@ -82,14 +82,14 @@
         function editar(id) {
             const tr = document.getElementById(`tr-${id}`);
             
-            document.getElementById("in_nombre").value = tr.children[0].textContent;
-            document.getElementById("in_apellido").value = tr.children[1].textContent;
-            document.getElementById("in_mail").value = tr.children[2].textContent;
-            document.getElementById("in_formacion").value = tr.children[6].textContent;
-            document.getElementById("in_edad").value = tr.children[7].textContent;
-            document.getElementById("in_comuna").value = tr.children[8].textContent;
-            document.getElementById("in_region").value = tr.children[9].textContent;
-            document.getElementById("in_estudiante").value = tr.children[10].textContent;
+            document.getElementById("in_nombre").value = tr.children[1].textContent;
+            document.getElementById("in_apellido").value = tr.children[2].textContent;
+            document.getElementById("in_mail").value = tr.children[3].textContent;
+            document.getElementById("in_formacion").value = tr.children[4].textContent;
+            document.getElementById("in_edad").value = tr.children[5].textContent;
+            document.getElementById("in_comuna").value = tr.children[6].textContent;
+            document.getElementById("in_region").value = tr.children[7].textContent;
+            document.getElementById("in_estudiante").value = tr.children[8].textContent;
             document.getElementById("btn_add").hidden = true;
             document.getElementById("btn_edit").hidden = false;
             const form = document.getElementById("formulario");

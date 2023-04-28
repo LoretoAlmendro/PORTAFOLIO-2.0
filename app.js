@@ -88,10 +88,28 @@ app.get('/region', async (req, res) => {
     res.render('mantenedor', { personas: data });
 });
 
-app.post('/mantenedor', async (req, res) => {
-    const { region } = req.body;
-    console.log(region)
-})
+app.post('/region/:id', async (req, res) => {
+     //haciendo la consulta api
+     try {
+         const { nombre, apellido, mail, formacion, edad, comuna, region, estudiante } = req.body;
+         const { id } = req.params;
+         console.log(id)
+        const resultado = await fetch(`http://localhost:4000/api/actualizacion/${id}`, {
+            method: "put",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                nombre, apellido, mail, formacion, edad, comuna, region, estudiante
+            })
+        });
+        
+        //transformar dato a json
+        const data = await resultado.json();
+
+        res.redirect('/region');
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 app.post('/persona', async (req, res) => {
     //haciendo la consulta api
@@ -116,7 +134,7 @@ app.post('/persona', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log('Servidor iniciado en el puerto 3000');
 });
 

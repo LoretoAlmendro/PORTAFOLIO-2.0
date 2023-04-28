@@ -18,3 +18,13 @@
     background-image: url(/images/LUMINOSIDAD.gif);
 }
 
+.square{
+    height: 30em;
+}
+
+.frame_square{
+    width: 20em;
+    border: 3px solid #000000;
+    background-color: white;
+    padding: 1em;
+}

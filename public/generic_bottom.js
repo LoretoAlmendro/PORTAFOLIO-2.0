@@ -46,10 +46,7 @@ console.log(tono);*/
 
 /*Evento onclick footer*/
 
-const botonFooter = document.getElementById('btn_footer');
-botonFooter.addEventListener('click', function () {
-  window.location.href = "/formulario";
-});
+
 
 /* // Send data after the button is clicked
 categoryForm.addEventListener("submit", (event) => {
@@ -64,26 +61,30 @@ formularioDatos.addEventListener('submit', (event) => {
   event.preventDefault();
   let inputNombre = formularioDatos.elements["nombre"].value;
   let inputApellido = formularioDatos.elements["apellido"].value;
-  let inputDireccion = formularioDatos.elements["direccion"].value;
-  let inputX = formularioDatos.elements["x1"].value;
+  let inputMail = formularioDatos.elements["mail"].value;
+  let inputFormacion = formularioDatos.elements["formacion"].value;
+  let inputEdad = formularioDatos.elements["edad"].value;
+  let inputComuna = formularioDatos.elements["comuna"].value;
+  let opcionSeleccionada = selectorRegion.options[selectorRegion.selectedIndex]
+  let opcionSeleccionadaValor = parseInt(opcionSeleccionada.value)
+  (console.log (opcionSeleccionadaValor))
+  let inputEstudiante = formularioDatos.elements["estudiante"].value;
+  
 
   const data = {
-    name: inputNombre,
-    lastname: inputApellido,
-    address: inputDireccion,
-    x: inputX
-  };
-
-  if (inputNombre == '' || inputApellido == '' || inputDireccion == '' || inputX == '') {
-    alert('Por favor, complete todos los campos');
-  } else {
-    postJSON(data);
-  }
-});
+    nombre: inputNombre,
+    apellido: inputApellido,
+    mail: inputMail,
+    formacion: inputFormacion,
+    edad:inputEdad,
+    comuna:inputComuna,
+    regionId: opcionSeleccionadaValor,
+    estudiante: inputEstudiante
+};
 
 async function postJSON(data) {
   try {
-    const response = await fetch("http://localhost:3000/categories", {
+    const response = await fetch("http://localhost:3001/api/persona", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -94,3 +95,6 @@ async function postJSON(data) {
   }
 }
 
+postJSON(data);
+
+});
