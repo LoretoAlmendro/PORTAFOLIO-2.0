@@ -80,13 +80,18 @@ app.get('/formulario', (req, res) => {
 app.get('/region', async (req, res) => {
     //haciendo la consulta api
     const resultado = await fetch(`http://localhost:4001/api/region`);
-
+    const resultadoJoin = await fetch(`http://localhost:4001/regiones/personas`);
     //transformar dato a json
     const data = await resultado.json();
+    const dataJoin = await resultadoJoin.json();
     console.log(data)
 
-    res.render('mantenedor', { personas: data });
+    //redirección
+    res.render('mantenedor', { personas: data, dataJoin: dataJoin});
+
 });
+
+
 
 app.put('/persona', async (req, res) => {
      //haciendo la consulta api
