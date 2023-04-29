@@ -29,8 +29,9 @@
             <th>Estudiante</th>
         </tr>
         <tr>
-            <form id="formulario" action="/mantenedor/{{id}}" method="POST">
-                <td></td>
+            <form id="formulario" action="/region?_method=put" method="POST">
+                <td> <input type="hidden" id="in_id" name="id"></td>
+
                 <td><input type="text" id="in_nombre" name="nombre" placeholder="Nombre"></td>
                 <td><input type="text" id="in_apellido" name="apellido" placeholder="Apellido"></td>
                 <td><input type="text" id="in_mail" name="mail" placeholder="E-mail"></td>
@@ -39,18 +40,15 @@
                 <td><input type="text" id="in_comuna" name="comuna" placeholder="Comuna"></td>
                 <td><input type="text" id="in_region" name="region" placeholder="Region"></td>
                 <td><input type="text" id="in_estudiante" name="estudiante" placeholder="Estudiante"></td>
-                <td><button id="btn_add"><span class="material-symbols-outlined">
-                            add
-                        </span></button>
-                    <button id="btn_edit" hidden><span class="material-symbols-outlined">
-                            edit
-                        </span></button>
+                <td><button id="botonGuardar"><span class="material-symbols-outlined">edit</span></button>
+                
+                           
                 </td>
             </form>
         </tr>
 
         {{#each personas}}
-        <tr id="tr-{{id}}">
+        <tr id="tr-{{id}}" class="eliminarFila">
 
             <td>{{id}} </td>
             <td>{{nombre}} </td>
@@ -62,12 +60,12 @@
             {{!-- <td>{{name}}</td> --}}
             <td>{{region}}</td>
             <td>{{estudiante}}</td>
-            <td><a href="#" onclick="editar({{id}})"><span class="material-symbols-outlined">
-                        edit
-                    </span></a>
+            <td><span class="material-symbols-outlined editarFila"></span></td>
+            <td><a href="#" name="onclickEditar" id="{{id}}"><span class="material-symbols-outlined editarFila">edit</span></a>
             </td>
             <td>
-                <a href="/mantenedor/{{id}}?_method=delete"><span class="material-symbols-outlined">
+                <a href="/mantenedor/{{id}}?_method=delete">
+                <span class="material-symbols-outlined btn_delete">
                         delete
                     </span></a>
             </td>
@@ -78,7 +76,17 @@
 
     {{!-- --}}
 
+    <script src="mantenedor.js"></script>
+   
     <script>
+        const link =  document.getElementsByName("onclickEditar");
+        link.forEach(element => {
+            element.addEventListener("click", editar(element.id));
+        } );
+        //link.addEventListener("click", (editar({{id}}))  )
+       
+        
+
         function editar(id) {
             const tr = document.getElementById(`tr-${id}`);
             
@@ -90,10 +98,11 @@
             document.getElementById("in_comuna").value = tr.children[6].textContent;
             document.getElementById("in_region").value = tr.children[7].textContent;
             document.getElementById("in_estudiante").value = tr.children[8].textContent;
-            document.getElementById("btn_add").hidden = true;
-            document.getElementById("btn_edit").hidden = false;
+            document.getElementById("btn_add").hidden =true;
+            document.getElementById("btn_edit").hidden =false;
             const form = document.getElementById("formulario");
-            form.action = `/mantenedor/${id}?_method=put`
+            console.log("hffhg")
+            form.action = `/region?_method=put`
             console.dir(form)
         }
     </script>

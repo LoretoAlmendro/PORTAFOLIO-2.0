@@ -59,6 +59,7 @@ categoryForm.addEventListener("submit", (event) => {
 let formularioDatos = document.getElementById("formularioDatos");
 formularioDatos.addEventListener('submit', (event) => {
   event.preventDefault();
+let selectorRegion = document.getElementById("region");
   let inputNombre = formularioDatos.elements["nombre"].value;
   let inputApellido = formularioDatos.elements["apellido"].value;
   let inputMail = formularioDatos.elements["mail"].value;
@@ -67,28 +68,33 @@ formularioDatos.addEventListener('submit', (event) => {
   let inputComuna = formularioDatos.elements["comuna"].value;
   let opcionSeleccionada = selectorRegion.options[selectorRegion.selectedIndex]
   let opcionSeleccionadaValor = parseInt(opcionSeleccionada.value)
-  (console.log (opcionSeleccionadaValor))
+  console.log (opcionSeleccionadaValor);
   let inputEstudiante = formularioDatos.elements["estudiante"].value;
   
 
   const data = {
     nombre: inputNombre,
     apellido: inputApellido,
-    mail: inputMail,
     formacion: inputFormacion,
     edad:inputEdad,
     comuna:inputComuna,
-    regionId: opcionSeleccionadaValor,
-    estudiante: inputEstudiante
+    estudiante: inputEstudiante,
+    mail: inputMail,
+    regionId: opcionSeleccionadaValor
 };
 
 async function postJSON(data) {
   try {
-    const response = await fetch("http://localhost:3001/api/persona", {
+    const response = await fetch("http://localhost:4001/api/persona", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    const result = await response.json();
+      console.log("Success: ", result);
+      if (result) {
+        alert("Agregado con exito");
+      }
     // Hacer algo con la respuesta...
   } catch (error) {
     console.error(error);
@@ -98,3 +104,52 @@ async function postJSON(data) {
 postJSON(data);
 
 });
+
+/* /*Evento onclick formulario vinculaci[on tablas*/
+/* let formularioEdit = document.getElementById("formulario");
+formularioEdit.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  let editNombre = formularioEdit.elements["nombre"].value;
+  let editApellido =formularioEdit.elements["apellido"].value;
+  let editMail =formularioEdit.elements["mail"].value;
+  let editFormacion =formularioEdit.elements["formacion"].value;
+  let editEdad =formularioEdit.elements["edad"].value;
+  let editComuna =formularioEdit.elements["comuna"].value;
+ let editRegion = formularioEdit.elements["region"].value
+  let editEstudiante =formularioEdit.elements["estudiante"].value;
+  
+
+  const data = {
+    nombre: editNombre,
+    apellido: editApellido,
+    formacion: editFormacion,
+    edad:editEdad,
+    comuna:editComuna,
+    estudiante: editEstudiante,
+    mail: editMail,
+    regionId: opcionSeleccionadaValor
+};
+
+async function putJSON(data) {
+  try {
+    const response = await fetch("http://localhost:4001/api/actualizacion/:id", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+      console.log("Success: ", result);
+      if (result) {
+        alert("Agregado con exito");
+      }
+    // Hacer algo con la respuesta...
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+putJSON(data);
+
+});
+ */

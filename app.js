@@ -79,7 +79,7 @@ app.get('/formulario', (req, res) => {
 
 app.get('/region', async (req, res) => {
     //haciendo la consulta api
-    const resultado = await fetch(`http://localhost:4000/api/region`);
+    const resultado = await fetch(`http://localhost:4001/api/region`);
 
     //transformar dato a json
     const data = await resultado.json();
@@ -88,22 +88,23 @@ app.get('/region', async (req, res) => {
     res.render('mantenedor', { personas: data });
 });
 
-app.post('/region/:id', async (req, res) => {
+app.put('/persona', async (req, res) => {
      //haciendo la consulta api
      try {
          const { nombre, apellido, mail, formacion, edad, comuna, region, estudiante } = req.body;
-         const { id } = req.params;
-         console.log(id)
-        const resultado = await fetch(`http://localhost:4000/api/actualizacion/${id}`, {
+        const { id } = req.params;
+         console.log("1")
+        const resultado = await fetch(`http://localhost:4001/api/actualizacion/${id}`, {
             method: "put",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({
-                nombre, apellido, mail, formacion, edad, comuna, region, estudiante
+                 nombre, apellido, mail, formacion, edad, comuna, region, estudiante
             })
-        });
         
+        });
+        console.log("2")
         //transformar dato a json
-        const data = await resultado.json();
+      /*   const data = await resultado.json(); */
 
         res.redirect('/region');
     } catch (error) {
